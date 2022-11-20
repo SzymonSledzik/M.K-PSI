@@ -1,0 +1,51 @@
+* {
+    font-family: 'Courier New', Courier, monospace;
+
+}
+
+.navbar {
+    margin-bottom: 15px;
+    border-radius: 0;
+    padding: 10px;
+    font-size: 17.5px;
+    background-color: rgb(149, 14, 29);
+    color: black;
+}
+
+.navbar-inverse .navbar-nav>.active>a,
+.navbar-inverse .navbar-nav>.active>a:focus,
+.navbar-inverse .navbar-nav>.active>a:hover {
+    background-color: rgb(6, 100, 102);
+}
+
+footer {
+    background-color: rgb(107, 44, 87);
+    padding: 25px;
+    height: 20px;
+}
+
+.carousel-inner img {
+    width: 100%;
+    /* Set width to 100% */
+    margin: auto;
+    min-height: 200px;
+}
+
+.navbar .navbar-inverse {
+    padding: 20px;
+}
+
+.panel-primary {
+    border-color: rgb(176, 105, 119);
+}
+
+.panel-primary>.panel-heading {
+    background-color: rgb(176, 105, 119);
+    border-color: rgb(176, 105, 119);
+}
+
+@media (max-width: 600px) {
+    .carousel-caption {
+        display: none;
+    }
+}
