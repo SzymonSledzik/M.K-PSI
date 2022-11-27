@@ -11,7 +11,8 @@ $conn = mysqli_connect($serverName, $userName, $password, $db);
 function addToDB($login, $psw)
 {
     global $conn;
-    $sql = "INSERT INTO `users` (`ID`, `uname`, `passwd`) VALUES (NULL, '$login', '$psw')";
+    $hashpsw = sha1($psw);
+    $sql = "INSERT INTO `users` (`ID`, `uname`, `passwd`) VALUES (NULL, '$login', '$hashpsw')";
 
     if ($result = $conn->query($sql)) {
         echo "Zarejestrowano pomyślnie";
@@ -28,7 +29,7 @@ function passChecker($passwd, $uname)
     $result = $conn->query($query);
     if ($result != null) {
         $row = $result->fetch_array(MYSQLI_ASSOC);
-        if ($passwd == $row['passwd']) {
+        if (sha1($passwd) == $row['passwd']) {
             return true;
         } else {
             return false;
