@@ -62,7 +62,7 @@
 </div>
 <?php
 if (isset($_POST['button'])) {
-    addComment($_POST['name'], $_POST['surname'], $_POST['message']);
+    addComment($_SESSION['name'], $_POST['message'], $page);
 }
 showComment()
 

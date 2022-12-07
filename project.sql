@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 20 Lis 2022, 21:13
--- Wersja serwera: 10.4.24-MariaDB
--- Wersja PHP: 8.1.6
+-- Czas generowania: 07 Gru 2022, 19:30
+-- Wersja serwera: 10.4.22-MariaDB
+-- Wersja PHP: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Baza danych: `paiproject`
+-- Baza danych: `project`
 --
 
 -- --------------------------------------------------------
@@ -29,19 +29,19 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `comments` (
   `ID` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `surname` varchar(255) NOT NULL,
-  `message` varchar(512) NOT NULL
+  `uname` varchar(255) NOT NULL,
+  `message` varchar(512) NOT NULL,
+  `page` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `comments`
 --
 
-INSERT INTO `comments` (`ID`, `name`, `surname`, `message`) VALUES
-(1, 'DodgingFisherMan', '123', 'asdasdas'),
-(2, 'DodgingFisherMan', '123', 'asdasdas'),
-(3, 'DodgingFisherMan', '123', 'asdasdas');
+INSERT INTO `comments` (`ID`, `uname`, `message`, `page`) VALUES
+(1, 'DodgingFisherMan', 'asdasdas', 0),
+(2, 'DodgingFisherMan', 'asdasdas', 0),
+(3, 'DodgingFisherMan', 'asdasdas', 0);
 
 -- --------------------------------------------------------
 
@@ -83,7 +83,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`ID`, `uname`, `passwd`) VALUES
 (1, 'Pupa', 'Dupa'),
 (2, 'Zupa', 'Kupa'),
-(4, 'Dupa22', 'Pupa22');
+(4, 'Dupa22', 'Pupa22'),
+(11, 'pupa22', '4347d0f8ba661234a8eadc005e2e1d1b646c9682');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -93,7 +94,8 @@ INSERT INTO `users` (`ID`, `uname`, `passwd`) VALUES
 -- Indeksy dla tabeli `comments`
 --
 ALTER TABLE `comments`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `page` (`ID`);
 
 --
 -- Indeksy dla tabeli `monuments`
@@ -127,7 +129,7 @@ ALTER TABLE `monuments`
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

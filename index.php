@@ -6,7 +6,7 @@ if (isset($_GET["page"])) {
 } else {
     $strona = "main";
 }
-include("./functions.php");
+include("functions.php");
 ?>
 
 <!DOCTYPE html>
@@ -24,33 +24,49 @@ include("./functions.php");
 
 <body>
     <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
+        <section class="container-fluid">
+            <section class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="#">Logo</a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
+            </section>
+            <section class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="index.php?page=main">Strona Główna</a></li>
                     <li><a href="index.php?page=monuments">Monumenty</a></li>
                     <li><a href="index.php?page=contact">Kontakt</a></li>
                     <li><a href="index.php?page=map">Mapa</a></li>
+                    <li><a href="index.php?page=panel">Panel Użytkownika</a></li>
+                    
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="index.php?page=login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                    <li><a href="index.php?page=rejestracja"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+                    <li><a href="index.php?page=login"><span class="glyphicon glyphicon-log-in">
+                        <?php
+                                if (isset($_POST['butt'])) {
+                                    $uname = $_POST['uname'];
+                                    $passwd = $_POST['passwd'];
+                                    $_SESSION['uname'] = $uname;
+                                    $_SESSION['passwd'] = $passwd;
+                                    passChecker($_SESSION['passwd'], $_SESSION['uname']);
+                                }?>
+                    </span> Login</a></li>
+                    <li><a href="index.php?page=rejestracja"><span class="glyphicon glyphicon-log-in"></span> Rejestracaj</a></li>
                 </ul>
-            </div>
-        </div>
+            </section>
+        </section>
     </nav>
 
     <?php
-    if ($strona != null) include($strona . '.php');
-    ?>
+    if ($strona != null){include($strona . '.php');}
+    
+    $islogin=passChecker($_SESSION['passwd'], $_SESSION['uname']);
+
+    if($islogin==true)echo "<div>CHUJ</div>";
+    if($islogin==false) echo "<div>PIZDA</div>";
+?>
 
     <footer class="container-fluid text-center">
         <p>Footer</p>

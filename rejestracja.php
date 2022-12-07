@@ -21,15 +21,29 @@
       <h1>Sign Up</h1>
       <p>Please fill in this form to create an account.</p>
       <hr>
-      <label for="uname"><b>Nazwa Użytkownika</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" required>
+      <label for="email"><b>E-Mail</b></label>
 
-      <label for="passwd"><b>Hasło</b></label>
-      <input type="password" placeholder="Enter Password" name="passwd" required>
+        <input type="text" placeholder="Enter Password" name="email" required><br>
 
-      <label>
-        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-      </label>
+
+
+        <label for="uname"><b>Nazwa Użytkownika</b></label>
+
+        <input type="text" placeholder="Enter Username" name="uname" required>
+
+
+
+
+
+        <label for="passwd"><b>Hasło</b></label>
+
+        <input type="password" placeholder="Enter Password" name="passwd" required>
+
+
+
+        <label for="passwd"><b>Powtórz Hasło</b></label>
+
+        <input type="password" placeholder="Enter Password" name="re-passwd" required>
 
       <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
 
@@ -47,8 +61,15 @@
 $uname = '';
 $passwd = '';
 if (isset($_POST['butt'])) {
-  $uname = $_POST['uname'];
-  $passwd = $_POST['passwd'];
+ if($_POST['passwd']!=$_POST['re-passwd']){
 
-  addToDB($uname, $passwd);
+ echo "Nie poprawne hasło!!";
+
+ }else{
+ $uname = $_POST['uname'];
+ $passwd = $_POST['passwd'];
+
+ addToDB($uname, $passwd);}
+
 } ?>
+

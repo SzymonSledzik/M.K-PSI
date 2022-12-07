@@ -8,7 +8,7 @@
 
         <label for="passwd"><b>Hasło</b></label>
         <input type="password" placeholder="Enter Password" name="passwd" required>
-
+        
         <button type="submit" name="butt">Login</button>
         <?php
 
@@ -18,7 +18,9 @@
             $_SESSION['uname'] = $uname;
             $_SESSION['passwd'] = $passwd;
             passChecker($_SESSION['passwd'], $_SESSION['uname']);
+            
         }
+
 
         ?>
         <label>
@@ -31,4 +33,14 @@
         <span class="passwd"><a href="index.php?page=rejestracja">Nie masz konta? Zarejestruj się!</a></span><br>
         <span class="passwd"><a href="index.php?page=remindpaswd">Zapomniałeś hasła??</a></span>
     </div>
+</form>
+
+<form action="index.php" method="post">
+<input type="submit" value="Wyloguj" name="out"/>
+<?php
+    if(isset($_POST['out'])){
+        unset($_SESSION['uname']);
+        unset($_SESSION['passwd']);
+    }
+?>
 </form>
